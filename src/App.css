@@ -1,38 +1,58 @@
-.App {
-  text-align: center;
+.editorBlock, .previewWrap  {
+    margin: 1.125rem auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.editorBlock {
+    max-width: 800px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.toolbar {
+    width: 99%;
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    font-family: "Russo One";
+    background-color: #578f65;
+    box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.fa {
+
 }
 
-.App-link {
-  color: #61dafb;
+.fa-free-code-camp {
+    margin-right: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.fa-arrows-alt, .fa-compress {
+    margin-right: 5px;
+    margin-left: auto;
+}
+
+#editor, #preview {
+    width: 99%;
+    font-size: 0.875rem;
+    padding-top: 5px;
+    padding-left: 5px;
+    outline: none;
+    background-color: #c9e9d1;
+    resize: vertical;
+    min-height: 250px;
+    box-sizing: border-box;
+}
+
+#editor, #preview, .toolbar {
+    border: solid 1px #578f65;
+    box-shadow: 1px 1px 10px 2px #2f5238;
+}
+
+.previewWrap {
+    max-width: 1200px;
+}
+
+#preview {
+    width: 99%;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    font-weight: 400;
 }
