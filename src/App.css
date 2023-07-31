@@ -17,7 +17,7 @@
 }
 
 .fa {
-
+    font-size: 1.25rem;
 }
 
 .fa-free-code-camp {
@@ -29,7 +29,11 @@
     margin-left: auto;
 }
 
-#editor, #preview {
+.fa-arrows-alt:hover, .fa-compress:hover {
+   color: #beb8c3;
+}
+
+textarea, #preview {
     width: 99%;
     font-size: 0.875rem;
     padding-top: 5px;
@@ -55,4 +59,29 @@
     overflow-wrap: break-word;
     line-height: 1.5;
     font-weight: 400;
+    padding: 0 1rem;
+}
+
+.maximize {
+    min-height: 95vh;
+    resize: none;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 3px;
+    border: solid 2px #111704;
+}
+
+h1, h2, h3 {
+    border-bottom: 2px solid #111704FF;
+}
+
+img {
+    max-width: 70%;
+    overflow-clip-margin: content-box;
+    overflow: clip;
 }

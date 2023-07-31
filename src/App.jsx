@@ -1,11 +1,9 @@
 import './App.css';
 import {marked} from 'marked';
-import * as DOMPurify from 'dompurify';
-import {useState} from "react";
 import store, {showMarkdown} from "./redux";
 import {connect} from "react-redux";
 import {Provider} from "react-redux";
-import React from "react";
+import React, {useState} from "react";
 
 const App = (props) => {
 
@@ -16,30 +14,59 @@ const App = (props) => {
 		return {__html: html}
 	}
 
-	const hide = true
+	const handleChange = (event) => {
+		props.handlePreviewText(event.target.value)
+	}
+
+	const [fullScreen, setFullScreen] = useState(
+		{ editorSize: true, reviewerSize: true}
+	)
+
+	const maximizeEditor = (boolean) => {
+		setFullScreen(
+			{reviewerSize: true, editorSize: boolean}
+		)
+	}
+
+	const maximizePreviewer = (boolean) => {
+		setFullScreen(
+			{reviewerSize: boolean, editorSize: true}
+		)
+	}
+
+	console.log(fullScreen.editorSize);
+
 	return (
 		<div>
-			<section className="editorBlock">
-				<div className="toolbar">
-					<i className="fa fa-free-code-camp" title="no-stack-dub-sack"></i>
-					Editor
-					{hide ?
-						<i className="fa fa-arrows-alt"></i> :
-						<i className="fa fa-compress"></i>}
-				</div>
-				<textarea id="editor" onKeyUp={props.handleChange}>{props.text}</textarea>
-			</section>
-			<section className="previewWrap">
-				<div className="toolbar">
-					<i className="fa fa-free-code-camp" title="no-stack-dub-sack"></i>
-					Preview
-					{hide ?
-						<i className="fa fa-arrows-alt"></i> :
-						<i className="fa fa-compress"></i>}
-				</div>
-				<div id="preview" dangerouslySetInnerHTML={createHtml()}>
-				</div>
-			</section>
+			{fullScreen.reviewerSize &&
+				<section className="editorBlock">
+					<div className="toolbar">
+						<i className="fa fa-free-code-camp" title="no-stack-dub-sack"></i>
+						Editor
+						{fullScreen.editorSize ?
+							<i className="fa fa-arrows-alt" onClick={() => maximizeEditor(false)}></i> :
+							<i className="fa fa-compress" onClick={() => maximizeEditor(true)}></i>}
+					</div>
+					<textarea id="editor"
+					          onKeyUp={handleChange}
+					          defaultValue={props.text}
+					          className={!fullScreen.editorSize && "maximize"}
+					/>
+				</section>
+			}
+			{fullScreen.editorSize &&
+				<section className="previewWrap">
+					<div className="toolbar">
+						<i className="fa fa-free-code-camp" title="no-stack-dub-sack"></i>
+						Preview
+						{fullScreen.reviewerSize ?
+							<i className="fa fa-arrows-alt" onClick={() => maximizePreviewer(false)}></i> :
+							<i className="fa fa-compress" onClick={() => maximizePreviewer(true)}></i>}
+					</div>
+					<div id="preview" dangerouslySetInnerHTML={createHtml()} >
+					</div>
+				</section>
+			}
 		</div>
 	);
 }
@@ -56,20 +83,7 @@ const mapDispatchToProps = (dispatch) => {
 	}
 }
 
-class ClassApp extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
-	handleChange = (event) => {
-		this.props.handlePreviewText(event.target.value)
-	}
-	render() {
-		return (<App handleChange={this.handleChange} text={this.props.text}/>)
-	}
-}
-
-const Container = connect(mapStateToProps, mapDispatchToProps)(ClassApp)
+const Container = connect(mapStateToProps, mapDispatchToProps)(App)
 
 const AppWrapper = () => {
 	return (

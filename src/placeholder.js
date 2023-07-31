@@ -1,13 +1,16 @@
 export const placeholder = "" +
 	"# Welcome to my React Markdown Previewer!\n" +
 	"## This is a sub-heading...\n" +
-	"### And here\'s some other cool stuff\n" +
-	":Heres some code, ` `, between 2 backticks.```\n" +
-	"// this is multi-line code:\nfunction anotherExample(firstLine, lastLine) {\n" +
+	"### And here's some other cool stuff\n" +
+	":Heres some code, `if (x > 0) { y = 2 } `, between 2 backticks.\n" +
+	"// this is multi-line code:" +
+	"\n```" +
+	"\nfunction anotherExample(firstLine, lastLine) {\n" +
 	"  if (firstLine == 0 && lastLine == 1 ) {\n" +
 	"    return multiLineCode;\n" +
 	"  }\n" +
-	"}\n ```" +
+	"}\n" +
+	"```\n" +
 	"You can also make text **bold**... whoa!\n" +
 	"Or _italic_.\n" +
 	"Or... wait for it... **_both!_**\n" +
